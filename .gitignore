@@ -1,0 +1,21 @@
+# Build output
+dist/
+web-ext-artifacts/
+*.zip
+*.xpi
+
+# Secrets: never commit keys
+.env
+.env.*
+*.pem
+secrets*
+
+# Dependencies
+node_modules/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

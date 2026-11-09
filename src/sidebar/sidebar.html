@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PageSage</title>
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">PageSage</span>
+    <div class="actions">
+      <button id="summarizeBtn" class="primary">Summarize page</button>
+      <button id="optionsBtn" class="icon" title="Settings" aria-label="Settings" aria-expanded="false" aria-controls="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <section id="settings" class="settings" aria-label="Settings">
+    <div class="inner">
+      <div class="pad">
+        <div class="field">
+          <label for="apiKey">Gemini API key</label>
+          <input type="password" id="apiKey" placeholder="AIza…" autocomplete="off" spellcheck="false">
+          <label class="check"><input type="checkbox" id="sessionOnly"> Keep in memory only (forget when the browser closes)</label>
+        </div>
+
+        <div class="field">
+          <label for="routing">Model routing</label>
+          <select id="routing">
+            <option value="auto">Automatic</option>
+            <option value="light">Light models only</option>
+            <option value="strong">Strong models first</option>
+            <option value="manual">Choose a model</option>
+          </select>
+          <p class="hint" id="routingHint"></p>
+        </div>
+
+        <div class="field" id="modelField" hidden>
+          <label for="modelSelect">Model</label>
+          <select id="modelSelect">
+            <option value="gemini-3.8-flash">gemini-3.8-flash</option>
+            <option value="gemini-3.6-flash">gemini-3.6-flash</option>
+            <option value="gemini-3.5-flash-lite" selected>gemini-3.5-flash-lite</option>
+            <option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite</option>
+            <option value="gemini-3.5-flash">gemini-3.5-flash</option>
+            <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+            <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
+            <option value="custom">Custom…</option>
+          </select>
+          <input type="text" id="customModel" placeholder="Model ID" hidden spellcheck="false">
+        </div>
+
+        <div class="field">
+          <label for="thinkingLevel">Thinking</label>
+          <select id="thinkingLevel">
+            <option value="none">Default</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <p class="hint">Applies to the strong models only.</p>
+        </div>
+
+        <div class="row">
+          <button id="saveBtn" class="primary">Save</button>
+          <button id="clearBtn" class="ghost danger">Remove key</button>
+          <span class="spacer"></span>
+          <span id="settingsMsg" role="status"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="output" class="markdown-body">
+    <p class="placeholder">Open a page and press Summarize.</p>
+  </main>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>
